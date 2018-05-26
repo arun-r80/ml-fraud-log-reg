@@ -111,15 +111,18 @@ print('selected features:')
 
 i=0
 for column,series in trainingdata.iteritems():
-    
-    
-   
     if (featureselection[i] == True ):
         print(column)
     i+=1
 ## pickle the selector 
 #joblib.dump(selector,'rfe.pkl')
+c=[x for x,status in zip(trainingdata.columns.values,featureselection) if status == True ]
 print('pickled selector')
+training_selected_features = trainingdata.loc[featureselection]
+print('treated data list')
+print(trainingdata[c])
+
+
 # =============================================================================
 
 
