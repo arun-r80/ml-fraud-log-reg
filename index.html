@@ -1,0 +1,68 @@
+<html>
+<form action="http://localhost:5000/empdb/employee/101" method="post">
+<table>
+<tbody>
+<tr>
+<td>Member Id</td>
+<td><input name="MemberId" type="text;" /></td>
+</tr>
+<tr>
+<td>Member's Name</td>
+<td><input name="MemberName" type="text;" /></td>
+</tr>
+<tr>
+<td>Member DOB</td>
+<td><input name="MemberDOB" type="text;" /></td>
+</tr>
+<tr>
+<td>Member Policy No</td>
+<td><input name="MemberPolicyNo" type="text;" /></td>
+</tr>
+<tr>
+<td>Policy Status</td>
+<td><input name="PolicyStatus" type="text;" /></td>
+</tr>
+<tr>
+<td>Member Gender</td>
+<td><input name="MemberGender" type="text;" /></td>
+</tr>
+</tbody>
+</table>
+<input type="Button" value="Validate" onclick="validateData()"/></form>
+<div id="id01"></div>
+
+<script>
+
+
+function validateData(){
+var xmlhttp = new XMLHttpRequest();
+var url = "http://localhost:5000/empdb/employee/101";
+
+//var url = "https://reqres.in/api/users?page=2";
+xmlhttp.onreadystatechange = function() {
+//alert("this.readyState"+this.readyState);
+
+//alert("this.status"+this.status);s
+//alert("this.statusText"+this.statusText);
+    if (this.readyState == 4 && this.status == 200) {
+    alert(this.responseText);
+        var myArr = JSON.parse(this.responseText);
+        alert(myArr.emp[0].id)
+        myFunction(myArr);
+    }
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+}
+function myFunction(arr) {
+    var out = "";
+    var i;
+    
+        out = "<p>"+arr.emp[0].name+"</p>";
+      
+    document.getElementById("id01").innerHTML = out;
+}
+
+</script>
+</html>
