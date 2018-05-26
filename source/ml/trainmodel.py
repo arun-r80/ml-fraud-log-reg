@@ -8,9 +8,12 @@ Created on Fri May 25 07:24:03 2018
 import pandas as pd
 import numpy as np
 import os
+from datetime import datetime, date, time
 import pathlib as pathlib
 from sklearn.feature_selection import RFE
 from sklearn.svm import SVC
+from sklearn.externals import joblib
+
 
 #################################################################3
 # =============================================================================
@@ -63,16 +66,49 @@ trainingdata= pd.DataFrame({'TotalCharge':              trainingdata_csv.TotalCh
 #we will choose random variables between 0.8-0.9
 # =============================================================================
 y=trainingdata_csv['CLAIMREJECTCODENONO']
-print(y)
+#print(y)
+features = ['TotalCharge','Total Benefit Amount','Age','PRIMARYPROCEDURECODENO','MEMBERGENDERNO']
+featureselection = [False,True,True,False,False]
+i=0
+for column,series in trainingdata.iteritems():
+    print('In Iteration')
+    print(i)
+    print(featureselection[i])
+    if (featureselection[i] == True ):
+        print(column)
+    i+=1
+
 # #,'Network Indicator']#,'Payee Indicator','Owner Identification','Age']]
 # #print(trainingdata)
 estimator = SVC(kernel="linear",C=1)
 selector = RFE(estimator,step=1)
+starttime=datetime.now()
 print('Starting fitting.....')
-selector.fit(trainingdata,y)
+#selector.fit(trainingdata,y)
 print('finised  fitting..........')
-selector.get_support(indices=True)
-selector.get_support(indices=False)
+endtime=datetime.now()
+print('time taken for fitting : ')
+print(endtime - starttime)
+print('get from pickle')
+selector_pickle=joblib.load('rfe.pkl')
+print(selector.get_support(indices=True))
+print(selector.get_support(indices=False))
+
+#featureselection = selector_pickle.get_support(indices=False)
+featureselection = selector.get_support(indices=False)
+## Print selected features
+print('selected features:')
+i=0
+for column,series in trainingdata.iteritems():
+    
+    
+    print(featureselection[i])
+    if (featureselection[i] == True ):
+        print(column)
+    i+=1
+## pickle the selector 
+#joblib.dump(selector,'rfe.pkl')
+print('pickled selector')
 # =============================================================================
 
 
