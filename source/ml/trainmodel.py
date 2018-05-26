@@ -43,16 +43,16 @@ df_final=pd.merge(trainingdata_csv,claimtype,on='PendCode',how='left')
 #'Owner Identification','Age','ADMITTINGDIAGNOSISCODENO','MEMBERGENDERNO']]
 #trainingdata = trainingdata_csv.loc['TotalCharge']
 trainingdata= pd.DataFrame({'TotalCharge':              trainingdata_csv.TotalCharge  ,
-                            'Total Benefit Amount':     trainingdata_csv.['Total Benefit Amount']
-                            'Network Indicator':        trainingdata_csv['Network Indicator'] ,
-                            'Payee Indicator' :         trainingdata_csv['Payee Indicator'],
-                            'Owner Identification' :    trainingdata_csv['Owner Identification'] ,
+                            'Total Benefit Amount':     trainingdata_csv['Total Benefit Amount'],
+                           # 'Network Indicator':        trainingdata_csv['Network Indicator'] ,
+                          #  'Payee Indicator' :         trainingdata_csv['Payee Indicator'],
+                          #  'Owner Identification' :    trainingdata_csv['Owner Identification'] ,
                             'Age':                      trainingdata_csv['Age'],
-                            'ADMITTINGDIAGNOSISCODENO': trainingdata_csv['ADMITTINGDIAGNOSISCODENO'],
-                            'PRIMARYDIAGNOSISCODENO':   trainingdata_csv['PRIMARYDIAGNOSISCODENO'],
+                         #   'ADMITTINGDIAGNOSISCODENO': trainingdata_csv['ADMITTINGDIAGNOSISCODENO'],
+                         #   'PRIMARYDIAGNOSISCODENO':   trainingdata_csv['PRIMARYDIAGNOSISCODENO'],
                             'PRIMARYPROCEDURECODENO':   trainingdata_csv['PRIMARYPROCEDURECODENO'],
-                            'ADDITIONALPROCEDURETYPE1NO':trainingdata_csv['ADDITIONALPROCEDURETYPE1NO'],
-                            'BILLINGPROVIDERCODENO':    trainingdata_csv['BILLINGPROVIDERCODENO'],
+                         #   'ADDITIONALPROCEDURETYPE1NO':trainingdata_csv['ADDITIONALPROCEDURETYPE1NO'],
+                          #  'BILLINGPROVIDERCODENO':    trainingdata_csv['BILLINGPROVIDERCODENO'],
                             'MEMBERGENDERNO':           trainingdata_csv['MEMBERGENDERNO']
                             
                 })
@@ -62,7 +62,7 @@ trainingdata= pd.DataFrame({'TotalCharge':              trainingdata_csv.TotalCh
 #so that we can do a feature analysis to get the independent
 #we will choose random variables between 0.8-0.9
 # =============================================================================
-y=np.random.randint(2,5,size=71)
+y=trainingdata_csv['CLAIMREJECTCODENONO']
 print(y)
 # #,'Network Indicator']#,'Payee Indicator','Owner Identification','Age']]
 # #print(trainingdata)
