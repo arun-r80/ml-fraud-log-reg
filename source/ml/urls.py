@@ -8,6 +8,11 @@ empDB=[
  'name':'Saravanan S',
  'title':'Technical Leader'
  },
+  {
+ 'id':'101',
+ 'name':'Saravanan S',
+ 'title':'Technical Leader'
+ },
  {
  'id':'201',
  'name':'Rajkumar P',
@@ -38,12 +43,21 @@ def createEmp():
     }
     empDB.append(dat)
     return jsonify(dat)
-@app.route('/empdb/employee/<empId>',methods=['DELETE'])
-def deleteEmp(empId):
-    em = [ emp for emp in empDB if (emp['id'] == empId) ]
-    if len(em) == 0:
-       abort(404)
-    empDB.remove(em[0])
-    return jsonify({'response':'Success'})
+# =============================================================================
+# @app.route('/empdb/employee/<empId>',methods=['DELETE'])
+# def deleteEmp(empId):
+#     em = [ emp for emp in empDB if (emp['id'] == empId) ]
+#     if len(em) == 0:
+#        abort(404)
+#     empDB.remove(em[0])
+#     return jsonify({'response':'Success'})
+# =============================================================================
+
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  return response
 if __name__ == '__main__':
  app.run()
