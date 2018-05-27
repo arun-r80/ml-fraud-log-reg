@@ -6,8 +6,16 @@ MLCop is a Logarithmic Regression based machine learning solution for fraud dete
 Solution Architecture:
 a. Front end user interface : Web portal - Web application to enter claim details
 b. Application Server : Run web services to provide evaluation of input data, based on pre-trained model
-c. Backend machine learning components : 
-    i.  Training data and configuration data for machine learning algorithms
-    ii. Trainer scripts for feature selection analysis and regression fitting.
-    iii.Persistence layer for feature selection and logarithmic regression model.  
+c. Backend machine learning components
+   
+   i.  Training data and configuration data for machine learning algorithms
+   ii. Trainer scripts for feature selection analysis and regression fitting.
+   iii.Persistence layer for feature selection and logarithmic regression model.  
 
+Technical Architecture
+
+a. Front end : Web form - HTML5/CSS3,JavaScript, AJAX, JSON
+
+b. Application Server : Flask
+
+c. Backend : Python based
