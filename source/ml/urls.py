@@ -21,38 +21,15 @@ def getAllEmp():
     return jsonify({'emps':empDB})
 @app.route('/empdb/employee/<empId>',methods=['GET'])
 def getEmp(empId):
-    TotCharge = request.args.get('TotCharge')
-    PendCode = request.args.get('PendCode')
-    Network_Indicator=request.args.get('Network_Indicator')
-    Payee_Indicator=request.args.get('Payee_Indicator')
-    Owner_Identification=request.args.get('Owner_Identification')
-    Age=request.args.get('Age')
-    Primary_Diagnosis=request.args.get('Primary_Diagnosis')
-    ADMITTING_DIAGNOSIS_CODE=request.args.get('ADMITTING_DIAGNOSIS_CODE')
     PRIMARYPROCEDURECODENO=request.args.get('PRIMARYPROCEDURECODENO')
-    ADDITIONALPROCEDURETYPE1NO=request.args.get('ADDITIONALPROCEDURETYPE1NO')
     MEMBERGENDERNO=request.args.get('MEMBERGENDERNO')
-    print(MEMBERGENDERNO)
-    print(PRIMARYPROCEDURECODENO)
-    print( CONFIG.GENDER_MAPPING[MEMBERGENDERNO])
-    print(CONFIG.PRIMARY_PROCEDURECODE_MAPPING[PRIMARYPROCEDURECODENO])
+
     
     c=predict_fraudulent_singleentry(
             MEMBERGENDERNO,
             PRIMARYPROCEDURECODENO
             )
                                         
-    print(TotCharge)
-    print(PendCode)
-    print(Network_Indicator)
-    print(Payee_Indicator)
-    print(Owner_Identification)
-    print(Age)
-    print(Primary_Diagnosis)
-    print(ADMITTING_DIAGNOSIS_CODE)
-    print(PRIMARYPROCEDURECODENO)
-    print(ADDITIONALPROCEDURETYPE1NO);
-    print(MEMBERGENDERNO);
     #usr = [ emp for emp in empDB if (emp['id'] == empId) ] 
     return jsonify({'emp':c})
 @app.route('/empdb/employee/<empId>',methods=['PUT'])
