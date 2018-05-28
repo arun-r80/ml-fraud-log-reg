@@ -7,3 +7,4 @@ Please refer to our Wiki page for more details : https://github.com/arun-r80/ml-
 
 Test cases : https://github.com/arun-r80/ml-fraud-log-reg/tree/master/source/ml/test/test.py
 
+Installaction Doc: https://github.com/arun-r80/ml-fraud-log-reg/wiki/Install-Doc
