@@ -34,5 +34,4 @@ print('initiate pickling regressor')
 joblib.dump(regressor,'regressor.pkl')
 print('regressor picked')
 
-regressor.predict(34)
 # =============================================================================
