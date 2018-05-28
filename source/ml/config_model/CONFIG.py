@@ -11,7 +11,8 @@ GENDER_MAPPING = {
         "Male"  : 0,
         "Female":1,
         "NA1":23,
-        "NA2":56
+        "NA2":56,
+        "Others":99
         }
 PRIMARY_PROCEDURECODE_MAPPING = {
         "RAM":1,

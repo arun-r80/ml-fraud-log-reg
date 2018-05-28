@@ -40,13 +40,23 @@ background-color: #008CBA; /* Green */
     font-size: 16px;
 }
 
+.status p {
+   text-align:center;
+   font-size:34px;
+   border:2px;
+   margin-top:2px;
+   margin-bottom:2px;
+   color:red;!important
+   
+}
+
 </style>
 <form action="http://localhost:5000/empdb/employee/101" method="post">
 <div class="box">
     <h2>User Claim Form</h2>
-    <p>
 
 <div align="center">
+<div id="id01" align="center" class="status"></div>
 <table>
 <tbody>
 <tr>
@@ -110,7 +120,7 @@ background-color: #008CBA; /* Green */
 <option>RAM</option>	<option>TNF</option>	<option>GFT</option>	<option>CRF</option>	<option>YHD</option>
 	<option>KSL</option>	<option>MYP</option>	<option>
 ZPD</option>	<option>BCR</option>	<option>ISC</option>	<option>MSP</option>	<option>TSD</option>	<option>AKB
-</option>
+</option><option>NA1</option>
 </select></td>
 </tr>
 <tr>
@@ -218,11 +228,12 @@ BILLINGPROVIDERCODENO
 </tbody>
 </table>
 <br>
-<input type="Button" class="button1" value="Validate" onclick="validateData()"/>
-</p>
-</div></form>
-<div id="id01"></div>
 
+<input type="Button" class="button1" value="Validate" onclick="validateData()"/>
+
+</div>
+
+</form>
 <script>
 
 
@@ -252,20 +263,20 @@ var ADDITIONALPROCEDURETYPE1NO_value=ADDITIONALPROCEDURETYPE1NO.options[ADDITION
     for (var x = 0; x < radioButtons.length; x ++) {
       if (radioButtons[x].checked) {
       k1=radioButtons[x].value;
-       //alert("Value is " + radioButtons[x].value);
+      
      }
      }
 
 
 var url = "http://localhost:5000/empdb/employee/101?TotCharge="+TotCharge+"&PendCode="+PendCode+"&Network_Indicator="+Network_Indicator+"&Payee_Indicator="+Payee_Indicator+"&Owner_Identification="+Owner_Identification+"&Age="+Age+"&Primary_Diagnosis="+Primary_Diagnosis_Code_value+"&ADMITTING_DIAGNOSIS_CODE="+ADMITTING_DIAGNOSIS_CODE_NO_VALUE+"&PRIMARYPROCEDURECODENO="+PRIMARYPROCEDURECODENO_value+"&ADDITIONALPROCEDURETYPE1NO="+ADDITIONALPROCEDURETYPE1NO_value+"&MEMBERGENDERNO="+k1;
-alert(url);
+
 //var url = "https://reqres.in/api/users?page=2";
 xmlhttp.onreadystatechange = function() {
 
     if (this.readyState == 4 && this.status == 200) {
-    alert(this.responseText);
+  
         var myArr = JSON.parse(this.responseText);
-        alert(myArr.emp[0].id)
+       
         myFunction(myArr);
     }
 };
@@ -275,10 +286,10 @@ xmlhttp.send();
 
 }
 function myFunction(arr) {
-    var out = "";
-    var i;
     
-        out = "<p>"+arr.emp[0].name+"</p>";
+    
+    
+       var out = "<p class='status'>"+ "VALIDATION STATUS:"+ arr.emp+"</p>";
       
     document.getElementById("id01").innerHTML = out;
 }

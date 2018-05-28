@@ -13,7 +13,7 @@ from config_model import CONFIG
 
 print("Positive Test Case 1 : Gender: Male, Procedure Code 78 is not fradulent")
 
-if predict_fraudulent_singleentry("Male","NA2") == CONFIG.FRAUD_MAPPING["0.0"]:
+if predict_fraudulent_singleentry("Male","NA1") == CONFIG.FRAUD_MAPPING["0.0"]:
     print("Pass")
 else:
     print("Fail")

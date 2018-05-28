@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import jsonify
 from flask import request
+from predictor import predict_fraudulent_singleentry
+from config_model import CONFIG
 app = Flask(__name__)
 empDB=[
  {
@@ -30,7 +32,16 @@ def getEmp(empId):
     PRIMARYPROCEDURECODENO=request.args.get('PRIMARYPROCEDURECODENO')
     ADDITIONALPROCEDURETYPE1NO=request.args.get('ADDITIONALPROCEDURETYPE1NO')
     MEMBERGENDERNO=request.args.get('MEMBERGENDERNO')
-                                            
+    print(MEMBERGENDERNO)
+    print(PRIMARYPROCEDURECODENO)
+    print( CONFIG.GENDER_MAPPING[MEMBERGENDERNO])
+    print(CONFIG.PRIMARY_PROCEDURECODE_MAPPING[PRIMARYPROCEDURECODENO])
+    
+    c=predict_fraudulent_singleentry(
+            MEMBERGENDERNO,
+            PRIMARYPROCEDURECODENO
+            )
+                                        
     print(TotCharge)
     print(PendCode)
     print(Network_Indicator)
@@ -42,8 +53,8 @@ def getEmp(empId):
     print(PRIMARYPROCEDURECODENO)
     print(ADDITIONALPROCEDURETYPE1NO);
     print(MEMBERGENDERNO);
-    usr = [ emp for emp in empDB if (emp['id'] == empId) ] 
-    return jsonify({'emp':usr})
+    #usr = [ emp for emp in empDB if (emp['id'] == empId) ] 
+    return jsonify({'emp':c})
 @app.route('/empdb/employee/<empId>',methods=['PUT'])
 def updateEmp(empId):
     em = [ emp for emp in empDB if (emp['id'] == empId) ]
