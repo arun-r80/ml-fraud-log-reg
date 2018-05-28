@@ -8,11 +8,6 @@ empDB=[
  'name':'Saravanan S',
  'title':'Technical Leader'
  },
-  {
- 'id':'101',
- 'name':'Saravanan S',
- 'title':'Technical Leader'
- },
  {
  'id':'201',
  'name':'Rajkumar P',
@@ -24,6 +19,29 @@ def getAllEmp():
     return jsonify({'emps':empDB})
 @app.route('/empdb/employee/<empId>',methods=['GET'])
 def getEmp(empId):
+    TotCharge = request.args.get('TotCharge')
+    PendCode = request.args.get('PendCode')
+    Network_Indicator=request.args.get('Network_Indicator')
+    Payee_Indicator=request.args.get('Payee_Indicator')
+    Owner_Identification=request.args.get('Owner_Identification')
+    Age=request.args.get('Age')
+    Primary_Diagnosis=request.args.get('Primary_Diagnosis')
+    ADMITTING_DIAGNOSIS_CODE=request.args.get('ADMITTING_DIAGNOSIS_CODE')
+    PRIMARYPROCEDURECODENO=request.args.get('PRIMARYPROCEDURECODENO')
+    ADDITIONALPROCEDURETYPE1NO=request.args.get('ADDITIONALPROCEDURETYPE1NO')
+    MEMBERGENDERNO=request.args.get('MEMBERGENDERNO')
+                                            
+    print(TotCharge)
+    print(PendCode)
+    print(Network_Indicator)
+    print(Payee_Indicator)
+    print(Owner_Identification)
+    print(Age)
+    print(Primary_Diagnosis)
+    print(ADMITTING_DIAGNOSIS_CODE)
+    print(PRIMARYPROCEDURECODENO)
+    print(ADDITIONALPROCEDURETYPE1NO);
+    print(MEMBERGENDERNO);
     usr = [ emp for emp in empDB if (emp['id'] == empId) ] 
     return jsonify({'emp':usr})
 @app.route('/empdb/employee/<empId>',methods=['PUT'])
@@ -43,15 +61,13 @@ def createEmp():
     }
     empDB.append(dat)
     return jsonify(dat)
-# =============================================================================
-# @app.route('/empdb/employee/<empId>',methods=['DELETE'])
-# def deleteEmp(empId):
-#     em = [ emp for emp in empDB if (emp['id'] == empId) ]
-#     if len(em) == 0:
-#        abort(404)
-#     empDB.remove(em[0])
-#     return jsonify({'response':'Success'})
-# =============================================================================
+@app.route('/empdb/employee/<empId>',methods=['DELETE'])
+def deleteEmp(empId):
+    em = [ emp for emp in empDB if (emp['id'] == empId) ]
+    if len(em) == 0:
+       abort(404)
+    empDB.remove(em[0])
+    return jsonify({'response':'Success'})
 
 @app.after_request
 def after_request(response):
